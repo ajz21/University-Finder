@@ -1,33 +1,47 @@
-console.log("connected");
+// http://universities.hipolabs.com/search?country=${count}
 
-let btn = document.getElementById("btn");
+/* <div class="universityCard">
+<div class="content"><p>University of Kerala</p></div>
+<button class="btn"><a href="">Go to Website</a></button>
+</div> */
 
-btn.addEventListener("click", () => {
-   let xhr = new XMLHttpRequest();
+let fetchBtn = document.getElementById("fetchBtn"),
+    container = document.getElementById("universtityContainer"),
+    loader = document.querySelector(".loader"),
+    count = document.getElementById("Country"),
+    state = document.getElementById("state").value;
 
-   //    let count = document.getElementById('country').value;
-   //    let state = document.getElementById('state').value;
-   xhr.open(
-      "GET",
-      `http://universities.hipolabs.com/search?country=${count}`,
-      true
-   );
+fetchBtn.addEventListener("click", () => {
+    loader.style.display = "block";
+    let xhr = new XMLHttpRequest();
 
-   xhr.onload = function () {
-      if (this.status == 200) {
-         //   console.log(JSON.parse(this.responseText));
-         let obj = JSON.parse(this.responseText);
+    xhr.open(
+        "GET",
+        `http://universities.hipolabs.com/search?country=${count.value}`,
+        true
+    );
 
-         obj.forEach((element) => {
-            // if (
-            //    element["state-province"] == "" ||
-            //    element.name.includes("Kerala")
-            // ) {
-            console.log(element.name);
-            // }
-         });
-      }
-   };
+    let str = "";
 
-   xhr.send();
+    // xhr.onprogress = function () {
+    //     loader.style.display = "block";
+    // };
+
+    xhr.onload = function () {
+        if (this.status == 200) {
+            let universityObj = JSON.parse(this.responseText);
+
+            universityObj.forEach((element) => {
+                str += `<div class="universityCard">
+                <div class="content"><p>${element.name}</p></div>
+                <button class="btn"><a href="${element.web_pages}" target="_blank">Go to Website</a></button>
+                </div>`;
+            });
+            loader.style.display = "none";
+            container.innerHTML = str;
+        }
+    };
+
+    xhr.send();
+    count.value = "";
 });
