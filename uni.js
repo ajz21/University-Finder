@@ -1,47 +1,77 @@
 // http://universities.hipolabs.com/search?country=${count}
 
-/* <div class="universityCard">
-<div class="content"><p>University of Kerala</p></div>
-<button class="btn"><a href="">Go to Website</a></button>
-</div> */
-
 let fetchBtn = document.getElementById("fetchBtn"),
     container = document.getElementById("universtityContainer"),
     loader = document.querySelector(".loader"),
     count = document.getElementById("Country"),
-    state = document.getElementById("state").value;
+    institution = document.getElementById("Institute"),
+    state = document.getElementById("state");
+
+function giveValue() {
+    if (count.value != "") {
+        searchValue = count.value;
+        return [searchValue, "country"];
+    } else if (state.value != "") {
+        searchValue = state.value;
+        return [searchValue, "state-province"];
+    } else if (institution.value != "") {
+        searchValue = institution.value;
+        return [searchValue, "name"];
+    }
+}
 
 fetchBtn.addEventListener("click", () => {
+    let arr = giveValue();
+
+    // console.log(arr);
+    let searchValue = arr.splice(0, 1).toString();
+    let key = arr.splice(-1, 1).toString();
+
     loader.style.display = "block";
     let xhr = new XMLHttpRequest();
 
-    xhr.open(
-        "GET",
-        `http://universities.hipolabs.com/search?country=${count.value}`,
-        true
-    );
+    xhr.open("GET", `http://universities.hipolabs.com/search?country`, true);
 
     let str = "";
 
-    // xhr.onprogress = function () {
-    //     loader.style.display = "block";
-    // };
-
     xhr.onload = function () {
-        if (this.status == 200) {
-            let universityObj = JSON.parse(this.responseText);
+        let universityObj = JSON.parse(this.responseText);
 
+        return new Promise((resolve) => {
             universityObj.forEach((element) => {
-                str += `<div class="universityCard">
-                <div class="content"><p>${element.name}</p></div>
+                if (element[key] == searchValue) {
+                    str += `<div class="universityCard">
+                <div class="content"><p class="name">${element.name}</p></div>
+                <p class="country">${element.country}</p>
                 <button class="btn"><a href="${element.web_pages}" target="_blank">Go to Website</a></button>
                 </div>`;
+                }
+                console.log(element.web_pages);
             });
+
             loader.style.display = "none";
             container.innerHTML = str;
-        }
+
+            error = true;
+            if (!error) {
+                resolve();
+            } else {
+                clearValue();
+            }
+        });
     };
 
     xhr.send();
-    count.value = "";
+
+    function clearValue() {
+        if (count != null) {
+            count.value = "";
+        }
+        if (state != null) {
+            state.value = "";
+        }
+        if (institution != null) {
+            institution.value = "";
+        }
+    }
 });
