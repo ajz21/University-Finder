@@ -23,7 +23,6 @@ function giveValue() {
 fetchBtn.addEventListener("click", () => {
     let arr = giveValue();
 
-    // console.log(arr);
     let searchValue = arr.splice(0, 1).toString();
     let key = arr.splice(-1, 1).toString();
 
@@ -43,10 +42,9 @@ fetchBtn.addEventListener("click", () => {
                     str += `<div class="universityCard">
                 <div class="content"><p class="name">${element.name}</p></div>
                 <p class="country">${element.country}</p>
-                <button class="btn"><a href="${element.web_pages}" target="_blank">Go to Website</a></button>
+                <button class="btn"><a href="${element.web_pages}" target="_blank" style="color:#d05b06;">Go to Website</a></button>
                 </div>`;
                 }
-                console.log(element.web_pages);
             });
 
             loader.style.display = "none";
