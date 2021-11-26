@@ -11,8 +11,8 @@ users can search universities all around the world
 - details of the university such as country and name are given in the ui
 
 ## Api used
-https://github.com/Hipo/university-domains-list OR 
-<a href="http://universities.hipolabs.com/search?country" target="_blank" >See the api data</a>
+<a href="https://github.com/Hipo/university-domains-list" target="_blank">See Repository</a> OR 
+<a href="http://universities.hipolabs.com/search?country" target="_blank">See the api data</a>
 
 
 ## Languages and tools used
