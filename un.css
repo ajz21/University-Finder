@@ -7,7 +7,7 @@
 .heading,
 .input {
     border-bottom: solid 2px black;
-    height: 50px;
+    height: 65px;
     align-items: center;
     display: flex;
     padding-left: 1pc;
@@ -19,7 +19,6 @@
 .input {
     background-color: white;
     grid-gap: 2pc;
-    height: 65px;
 }
 input {
     background-color: #fef9ef;
@@ -29,7 +28,6 @@ input {
     border: solid 1px black;
     font-size: 20px;
     outline: none;
-    border-radius: 2px;
 }
 .universtityContainer {
     display: grid;
@@ -47,7 +45,6 @@ input {
     background-color: white;
     border: solid 2px black;
     box-shadow: 8px 8px black;
-    width: max-content;
     padding: 2pc;
     grid-gap: 0.5pc;
     display: flex;
