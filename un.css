@@ -2,7 +2,6 @@
     margin: 0pc;
     padding: 0pc;
     text-decoration: none;
-    list-style: none;
     font-family: "Karla", sans-serif;
 }
 .heading,
@@ -12,9 +11,9 @@
     align-items: center;
     display: flex;
     padding-left: 1pc;
+    justify-content: center;
 }
 .heading {
-    justify-content: center;
     font-size: 30px;
 }
 .input {
@@ -24,7 +23,7 @@
 }
 input {
     background-color: #fef9ef;
-    width: 300px;
+    width: 280px;
     height: 35px;
     padding-left: 1pc;
     border: solid 1px black;
@@ -87,7 +86,4 @@ input {
     100% {
         transform: rotate(360deg);
     }
-}
-a {
-    color: #d05b06;
 }
